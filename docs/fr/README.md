@@ -37,7 +37,7 @@ L’architecture sous-jacente est construite à l’aide de technologies bien é
 - **[Node.js](https://nodejs.org/) >= 6.11.5**
 > Le framework dispose de webpack 4 pour la partie front-end et a besoin d'une version nodejs la plus récente que possible.
 - **OS supporté: Linux, MacOS et Windows**
-> Linux et MacOS sont toute fois recommandé.
+> Linux et MacOS sont toutefois recommandé.
 
 
 ## Installation
@@ -52,7 +52,7 @@ $ npm install
 
 ### Git
 ``` bash
-$ git pull https://github.com/simondevelop/slim-sim.git <projet_name>
+$ git pull https://github.com/SimonDevelop/slim-sim.git <projet_name>
 $ cd <projet_name>
 $ composer install
 $ npm install
@@ -118,12 +118,12 @@ $ docker-compose up -d
     - `Entity/` dossier des entités doctrine
     - `Middlewares/` dossier des middlewares
     - `Views/` dossier des vues twig
-- `assets/` dossier pour le développement front-end
-- `config/` dossier comportant des fichiers de configuration de l'application
-    - `commands` dossier comportant la configuration des commandes terminal
-    - `translations` dossier comportant les traductions utilisés pour twig
+- `assets/` dossier des fichiers front-end (css/js...)
+- `config/` dossier des fichiers de configuration de l'application
+    - `commands` dossier de configuration des commandes terminal
+    - `translations` dossier des fichiers de traduction utilisés dans les vues twig
     - `cli-config.php` fichier cli pour les commandes doctrine
-    - `container.php` le container des dépendences
+    - `container.php` le container des dépendances
     - `error_pages.php` les vues en cas d'erreur
     - `functions.php` les fonctions accessible partout dans le code
     - `middlewares.yml` fichier d'appel des middlewares
@@ -134,6 +134,6 @@ $ docker-compose up -d
 	- `cache/` cache twig de l'application
 	- `logs/` les logs de monolog
 - `tests/` dossier des tests unitaires
-- `.env` fichier de configuration d'environnement base de données
+- `.env` fichier d'environnement base de données
 - `console` fichier php des commandes cli
 - `webpack.config.js` fichier de configuration de webpack
