@@ -1,33 +1,33 @@
 module.exports = {
   base: '/',
   head: [
-    ['link', { rel: 'icon', type: 'image/png', href: 'https://miroir.horyzone.fr/upload/logo-sim-transparent-200px.png' }],
+    ['link', { rel: 'icon', type: 'image/png', href: 'https://github.com/SimonDevelop/slim-sim/raw/master/assets/img/logo.png' }],
     ['meta', { name: 'og:type', content: 'website' }],
-    ['meta', { name: 'og:title', content: 'SIM Docs' }],
-    ['meta', { name: 'og:description', content: 'SIM Documentation - Main documentation of open-source PHP framework SIM.' }],
-    ['meta', { name: 'og:image', content: 'https://miroir.horyzone.fr/upload/logo-sim-transparent-200px.png' }],
+    ['meta', { name: 'og:title', content: 'Slim Sim Docs' }],
+    ['meta', { name: 'og:description', content: 'Slim Sim Documentation - Main documentation of slim sim skeleton.' }],
+    ['meta', { name: 'og:image', content: 'https://github.com/SimonDevelop/slim-sim/raw/master/assets/img/logo.png' }],
     ['meta', { name: 'twitter:card', content: 'summary' }],
-    ['meta', { name: 'twitter:title', content: 'SIM Docs' }],
-    ['meta', { name: 'twitter:description', content: 'SIM Documentation - Main documentation of PHP framework SIM.' }],
-    ['meta', { name: 'twitter:image', content: 'https://miroir.horyzone.fr/upload/logo-sim-transparent-200px.png' }],
+    ['meta', { name: 'twitter:title', content: 'Slim Sim Docs' }],
+    ['meta', { name: 'twitter:description', content: 'Slim Sim Documentation - Main documentation of slim sim skeleton.' }],
+    ['meta', { name: 'twitter:image', content: 'https://github.com/SimonDevelop/slim-sim/raw/master/assets/img/logo.png' }],
     ['meta', { name: 'theme-color', content: '#CC193A' }]
   ],
   locales: {
     '/': {
       lang: 'en',
-      title: 'SIM Docs',
-      description: 'SIM Documentation - Main documentation of PHP framework SIM.'
+      title: 'Slim Sim Docs',
+      description: 'Slim Sim Documentation - Main documentation of slim sim skeleton.'
     },
     '/fr/': {
       lang: 'fr',
-      title: 'SIM Docs',
-      description: 'Documentation de SIM - Documentation principale du framework PHP SIM.'
+      title: 'Slim Sim Docs',
+      description: 'Documentation de Slim Sim - Documentation principale du skeleton slim sim.'
     }
   },
   themeConfig: {
-    logo: 'https://miroir.horyzone.fr/upload/logo-sim-transparent-200px.png',
-    repo: 'Horyzone/sim',
-    docsRepo: 'Horyzone/docs-sim',
+    logo: 'https://github.com/SimonDevelop/slim-sim/raw/master/assets/img/logo.png',
+    repo: 'SimonDevelop/slim-sim',
+    docsRepo: 'SimonDevelop/docs-slim-sim',
     docsDir: 'docs',
     editLinks: true,
     locales: {
