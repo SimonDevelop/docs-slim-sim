@@ -1,10 +1,9 @@
-# Sim Documentation [![Netlify Status](https://api.netlify.com/api/v1/badges/961b1f9a-48f5-4b40-be58-c92d0f2ecd32/deploy-status)](https://app.netlify.com/sites/agitated-pare-8fb319/deploys)
+# Sim Documentation
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b4c60a45-6028-4dc8-980d-c046e2ccdf99/deploy-status)](https://app.netlify.com/sites/slim-sim/deploys)
 
 ## Overview
 
-This repository contains the main documentation of PHP SIM framework. It is available on [docs-sim.horyzone.fr](https://docs-sim.horyzone.fr), built on the top of [VuePress](https://vuepress.vuejs.org) and hosted by [Netlify](https://www.netlify.com).
-
-#### **Help translate the documentation into English from this repository with pull request.**
+This repository contains the main documentation of Slim Sim, a skeleton based on PHP micro framework. It is available on [slim-sim.netlify.com](https://slim-sim.netlify.com/), built on the top of [VuePress](https://vuepress.vuejs.org) and hosted by [Netlify](https://www.netlify.com).
 
 ## Development
 

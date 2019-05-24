@@ -1,38 +1,28 @@
 # Les Bases
 
 ## Routeur
-Attaquons maintenant le `routeur`, il s'agit tout simplement du `routeur` de [slim](https://www.slimframework.com/), mais vous utiliserez plutôt un fichier yaml pour simplifier.
-Dans le fichier `config/routes.yml` sont définies les routes de votre application.
+Attaquons maintenant le `routeur`, il s'agit tout simplement du `routeur` de [slim](https://www.slimframework.com/), c'est dans le fichier `config/routes.php` que sont définies les routes de votre application.
 
-Vous donnez un nom à votre route, puis vous lui donnez ses propriétés comme ceci :
+``` php
+<?php
 
-``` yaml
-home:
-  methode: get
-  path: /
-  controller: App\Controllers\HomeController
-  fonction: getHome
-  middlewares: [alert]
+use App\Controllers\HomeController;
 
-home_post:
-  methode: post
-  path: /
-  controller: App\Controllers\HomeController
-  fonction: postHome
+$app->get('/', HomeController::class. ':getHome')->setName('home');
+// $app->post('/', HomeController::class. ':postHome');
 
-hello:
-  methode: get
-  path: /hello/{name}
-  controller: App\Controllers\HomeController
-  fonction: getHome
+// Exemple pour le RouterJS
+$app->get('/hello/{name}', HomeController::class. ':getHome')->setName('hello');
 ```
 
-### Les propriétes :
-- `methode`: Vous définissez la méthode de la requête (`get`, `post`, `put`, `update`, `delete`), si vous en donnez pas, il comprendra qu'il s'agit d'une requête `any`.
-- `path`\*: Ici l'url de votre route, les paramètres comme `{id}` vous permet d'ajouter des paramètres à votre requête via l'url.
-- `controller`\*: Le controller qui s'occupera de votre route.
-- `function`\*: La fonction dans votre controller qui s'occupera de votre route.
-- `middlewares`: La liste des middlewares à utiliser pour votre route.
+Chaque route commence par `$app`, appeler ensuite la méthode que vous souhaitez utiliser, `get`, `post`, `put`, `update` ou `delete`, utiliser `any` si vous souhaitez prendre en compte toute les méthodes http.
+
+En premier paramètre vous définissez l'url, les paramètres munis de `{}` sont des valeurs récupérer dans l'url, nous en parleront un peu plus dans le chapitre des controllers.
+
+Le second paramètre est la méthode à utiliser pour cette route, ici vous définissez la classe du controller avec sa méthode.
+Vous pouvez aussi définir un nom avec la méthode `setName()`, elle sera utilisé dans vos vues twig.
+
+Pour plus d'informations concernant le routeur, je vous invite à aller voir la [documentation du routeur de slim](https://www.slimframework.com/docs/v3/objects/router.html).
 
 ## Container
 Maintenant, le gestionnaire de dépendances de [slim](https://www.slimframework.com/), le `container`.
