@@ -7,12 +7,12 @@ module.exports = [
     text: 'Links',
     items: [
       { text: 'Contributing', items: [
-          { text: 'Contribute', link: 'https://github.com/Horyzone/sim/blob/master/.github/CONTRIBUTING.md' },
-          { text: 'Donate', link: 'http://donate.horyzone.fr' }
+          { text: 'Contribute', link: 'https://github.com/SimonDevelop/slim-sim/blob/master/.github/CONTRIBUTING.md' },
+          { text: 'Donate', link: 'https://github.com/SimonDevelop/slim-sim#donate' }
         ]
       },
       { text: 'Help', items: [
-          { text: 'Issues', link: 'https://github.com/Horyzone/sim/issues' }
+          { text: 'Issues', link: 'https://github.com/SimonDevelop/slim-sim/issues' }
         ]
       }
     ]
