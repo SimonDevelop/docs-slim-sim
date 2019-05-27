@@ -20,9 +20,14 @@ Pour plus d'infos sur l'ORM, je vous invite à aller voir la [documentation offi
 
 ## Fixtures
 
-Vous pouvez envoyer des données fictives en base de données avec [data-fixtures](https://github.com/doctrine/data-fixtures), créez vos fixtures dans le dossier `app/src/Entity/DataFixtures` puis lancez la commande :
+Vous pouvez envoyer des données prédéfini en base de données avec [data-fixtures](https://github.com/doctrine/data-fixtures), créez vos fixtures dans le dossier `app/src/Entity/DataFixtures` puis lancez la commande :
 
 ``` bash
 $ php console data:fixtures
 ```
-Des exemples sont à votre disposition sur le dépot du [framework SIM](https://github.com/Horyzone/sim/tree/master/app/src/Entity/DataFixtures).
+
+Attention, cette commande purge la base de données pour ensuite envoyer toutes les fixtures de dossier `app/src/Entity/DataFixtures`, pour envoyer une fixture spécifique sans pruger la base, lancer la commande :
+
+``` bash
+$ php console data:fixture <VotreFixture>
+```

@@ -1,7 +1,35 @@
 # ORM
 
 ## Doctrine
-WIP...
+
+Doctrine is the ORM used, you have at your disposal the entities in the folder `app/src/Entity` and access to `EntityManager` from the controllers with `$this->em;`.
+
+Here is the doctrine command that you will need to declare your entities in database (Make sure you have created your database beforehand):
+> Linux and MacOs
+``` bash
+$ php vendor/bin/doctrine orm:schema-tool:update
+```
+> Windows
+``` bash
+$ php vendor/doctrine/orm/bin/doctrine.php orm:schema-tool:update
+```
+
+Beside your entities you have `repository`, these are the classes where you will write the doctrine queries using for example its [QueryBuilder](https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/query-builder.html#the-querybuilder).
+
+For more info on the ORM, I invite you to go and see the [documentation officiel](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/).
 
 ## Fixtures
-WIP...
+
+You can send predefined database data with [data-fixtures](https://github.com/doctrine/data-fixtures), create your fixtures in the `app/src/Entity/DataFixtures` folder, and run the command :
+
+``` bash
+$ php console data:fixtures
+```
+
+Attention, cette commande purge la base de données pour ensuite envoyer toutes les fixtures de dossier `app/src/Entity/DataFixtures`, pour envoyer une fixture spécifique sans pruger la base, lancer la commande :
+
+Attention, this command purges the database to then send all the fixtures of file `app/src/Entity/DataFixtures`, to send a specific fixture without hollowing the base, to launch the command :
+
+``` bash
+$ php console data:fixture <YourFixture>
+```
