@@ -37,26 +37,26 @@ $container['librairie'] = function () {
 };
 ```
 
-N'hésitez pas à aller voir sur la documentation de [slim](https://www.slimframework.com/docs/) pour des choses plus avancées.
+N'hésitez pas à aller voir sur la documentation concernant le [container de slim](https://www.slimframework.com/docs/v3/concepts/di.html) pour plus de détails.
 
 
 ## Controllers
 Maintenant que nous avons vu comment créer des routes, il reste plus qu'à faire la partie logique et vue de ces routes.
-Commençons par les `controllers`, si vous vous rappelez dans la partie `routeur` du chapitre précédent, vous deviez déclarer un controller pour chaque route.
+Commençons par les `controllers`, si vous vous rappelez dans la partie `routeur`, vous deviez déclarer un controller et une méthode pour chaque route.
 Il s'agit de la partie logique d'une vue, ou vous allez effectuer diverses opérations, des requêtes en base de données par exemple pour ensuite les envoyer à la vue `views`.
 
-Dans un controller vous avez des `actions`, ou `fonctions` dans la logique du code, ces fonctions ont pour rôle de gérer la logique d'une route avant de retourner la vue.
+Dans un controller vous avez des `actions`, ou `méthodes` dans la logique du code, ces méthodes ont pour rôle de gérer la logique d'une route avant de retourner la vue.
 Prenons exemple de cette route :
-``` yaml
-home:
-  methode: get
-  path: /home
-  controller: App\Controllers\HomeController
-  fonction: getHome
-```
-Ma route est `/home`, donc l'url correspond à `http://exemple.net/home`, pour cette url je désigne le controller `HomeController` avec comme action `getHome`.
+``` php
+<?php
 
-Si on regarde cette `action` dans le controller `app/src/Controllers/HomeController.php` :
+use App\Controllers\HomeController;
+
+$app->get('/', HomeController::class. ':getHome')->setName('home');
+```
+Ma route est `/home`, donc l'url correspond à `http://exemple.net/home`, pour cette url je désigne le controller `HomeController` avec comme action `getHome` qui est la `méthode`.
+
+Si on regarde cette `méthode` dans le controller `app/src/Controllers/HomeController.php` :
 ``` php
 <?php
 
@@ -74,70 +74,50 @@ public function getHome(RequestInterface $request, ResponseInterface $response)
     $this->render($response, 'pages/home.twig', $params);
 }
 ```
-Ici je définis une variable `$title`, par la suite j'effectue une opération avec `monolog`, j'y ai accès car il est déclaré dans le `container`, puis j'envoie cette variable dans ma vue vers le fichier `pages/home.twig`.
+Ici je définis une variable `$title`, par la suite j'effectue une opération avec `monolog`, j'y ai accès car il est déclaré dans le `container`, puis j'envoie cette variable dans ma vue en effectuant un `render()` de `$response` vers le fichier `pages/home.twig` et le tableau de mes données `$params`.
 
 
 ## Views
 Allons voir cette vue `app/src/Views/pages/home.twig` :
-``` twig
+```twig
 {% extends "layout.twig" %}
 {% block content %}
 <h1>{{ title }}</h1>
 {% endblock %}
 ```
-
-Si vous connaissez un peu twig, vous aurez très vite compris que la première ligne sert à appeler la page parent de ma vue `layout.twig`.
-Dans ma vue je souhaite simplement afficher la variable `$title` que le controller lui a envoyé, rien de bien compliqué.
-Si vous connaissez à peine twig, je vous invite à aller voir la [documentation](https://twig.symfony.com/doc/2.x/) pour que vous puissiez l'utiliser, ici je guide surtout sur l'utilisation du template.
+Si vous connaissez un peu twig, vous aurez très vite compris que la première ligne sert à appeler la page parent de la vue `layout.twig`.<br>
+Dans la vue je souhaite simplement afficher la variable `$title` que le controller lui a envoyé, rien de bien compliqué.<br>
+Si vous connaissez à peine twig, je vous invite à aller voir la [documentation de twig](https://twig.symfony.com/doc/2.x/) pour vous y familiariser.
 
 
 ## Middlewares
-On attaque maintenant les `middlewares` de [slim](https://www.slimframework.com/docs/).
-Pour faire simple, il s'agit un peu comme des controllers, mais contrairement à effectuer des actions précises pour des routes, ils effectuent des opérations que vous allez définir à exécuter où et quand.
+On attaque la partie qui rend slim très intéressant, les `middlewares`.<br>
+Pour faire simple, il s'agit un peu comme des controllers, mais contrairement à ces derniers, leur action sont effectué à des moments précis dans le routeur.
 
 Par exemple, vous développez une application avec une interface administrateur sur la route `/admin`, vous avez d'autres routes avec cette url, `/admin/users`, `/admin/user/3` ect...
 
-Vous devez sur chacune de ces vues vérifier les droits d'accès de l'utilisateur qui souhaite accéder à ces pages, en temps normal vous écrivez le code pour cette vérification sur chaque action dans vos controllers qui serait du copier/coller ce qui n'est pas bon.
+Vous devez sur chacune de ces vues, vérifier les droits d'accès de l'utilisateur qui souhaite accéder à ces pages, en temps normal vous écrivez le code pour cette vérification sur chaque action dans vos controllers qui serait du copier/coller, ce qui n'est pas bon.<br>
 Les `middlewares` vous permettent de faire ceci dans un seul endroit pour ensuite le faire exécuter sur les vues souhaitées et ce avant l'exécution de vos controllers.
 
-C'est dans le fichier `config/middlewares.yml` que vous ajoutez la liste de tous vos middlewares que votre application utilisera :
-``` yaml
-alert:
-  middleware: App\Middlewares\AlertMiddleware
-  arguments: [container]
+C'est dans le fichier `config/middlewares.php` que vous ajoutez à l'exécution les middlewares à exécuter avant les controllers, et ce pour toutes les vues :
+``` php
+<?php
 
-old:
-  middleware: App\Middlewares\OldMiddleware
-  arguments: [container]
-  active: always
+use App\Middlewares;
 
-token:
-  middleware: App\Middlewares\TokenMiddleware
-  arguments: [container]
-  active: always
+// Middleware pour les message d'alert en session
+$app->add(new Middlewares\AlertMiddleware($container->view->getEnvironment()));
 
-csrf:
-  middleware: App\Middlewares\CsrfMiddleware
-  arguments: [container]
-  active: always
+// Middleware pour la sauvegarde des champs de saisi
+$app->add(new Middlewares\OldMiddleware($container->view->getEnvironment()));
 
-csrfChecker:
-  arguments: [container.csrf]
-  active: always
+// Middleware pour la génération de token
+$app->add(new Middlewares\TokenMiddleware($container->view->getEnvironment()));
 
-tracy:
-  middleware: RunTracy\Middlewares\TracyMiddleware
-  arguments: [app]
-  active: always
-  env: dev
+// Middleware pour la vérification csrf
+$app->add(new Middlewares\CsrfMiddleware($container->view->getEnvironment(), $container->csrf));
+$app->add($container->csrf);
 ```
-
-Un peu comme le principe des routes, vous avez des propriétés pour chaque middleware à définir.
-### Les propriétes :
-- `middleware`\*: Définir la `class` du middleware.
-- `arguments`\*: Les arguments à lui passer (entre autre il s'agit principalement du container ou de l'app de slim).
-- `active`: Mettre cette propriété à `always` pour lancer le middleware pour toute les routes.
-- `env`: Défini les middleware à lancer en environnement de développement ou de production (lance sur tous les environnements par défaut).
 
 Allons voir par exemple le middleware `app/src/Middlewares/AlertMiddleware.php` :
 ``` php
@@ -152,9 +132,9 @@ class AlertMiddleware
     private $twig;
     private $container;
 
-    public function __construct($container)
+    public function __construct(\Twig_Environment $twig, $container)
     {
-        $this->twig = $container->view->getEnvironment();
+        $this->twig = $twig;
         $this->container = $container;
     }
 
@@ -178,14 +158,25 @@ Dans le controller parent `app/src/Controllers/Controller.php` vous avez la fonc
 <?php
 public function alert($message, $type = "success")
 {
-    if (!isset($_SESSION['alert'])) {
-        $_SESSION['alert'] = [];
+    if (!$this->session->has('alert')) {
+        $this->session->set('alert', []);
     }
-    return $_SESSION['alert'][$type] = $message;
+    return $this->session->add([
+        'alert' => [$type => $message]
+    ]);
 }
 ```
 Le middleware `app/src/Middlewares/OldMiddleware.php` qui est utilisé pour garder en mémoire les informations saisies dans les formulaires, utiles en cas d'echec, fonctionne de la même manière que le middleware pour les messages flash.
 
-Il envoie les informations des champs dans la vue sous forme de tableau nommé `old`, il n'y a pas de fonction pour celà, vous devez juste enregistrer sous forme de tableau vos champs dans la variable de session `old`.
+Il envoie les informations des champs dans la vue sous forme de tableau nommé `old`, il n'y a pas de fonction pour celà, vous devez juste enregistrer sous forme de tableau vos champs dans la variable de session `$_SESSION['old']`.
 
-Si vous souhaitez créer des middlewares et les exécuter pour des routes bien spécifiques, celà ce passe dans la partie `routes.yml`.
+Si vous souhaitez créer des middlewares et les exécuter pour des routes bien spécifiques, vous ne devez pas les déclarer dans `config/middlewares.php` mais directement dans `config/routes.php` comme ceci :
+``` php
+<?php
+$app->group('', function () {
+  $this->get('/admin', AdminController::class. ':getHome')->setName('admin');
+  $this->get('/admin/users', AdminController::class. ':getUsers')->setName('users');
+})->add(new App\Middlewares\AlertMiddleware($container->view->getEnvironment(), $container));
+```
+
+Pour comprendre le fonctionnement précis des middlewares de slim, je vous invite à aller voir la [documentation](https://www.slimframework.com/docs/concepts/middleware.html).
