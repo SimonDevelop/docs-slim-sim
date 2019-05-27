@@ -37,7 +37,7 @@ $container['librairie'] = function () {
 };
 ```
 
-N'hésitez pas à aller voir sur la documentation de [slim](https://www.slimframework.com/docs/) pour des choses plus avancées.
+N'hésitez pas à aller voir sur la documentation concernant le [container de slim](https://www.slimframework.com/docs/v3/concepts/di.html) pour plus de détails.
 
 
 ## Controllers

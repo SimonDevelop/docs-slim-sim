@@ -25,7 +25,20 @@ You can also define a name with the `setName()` method, it will be used in your 
 For more information about the router, I invite you to go to the [documentation of the slim router](https://www.slimframework.com/docs/v3/objects/router.html).
 
 ## Container
-WIP...
+Now, the [slim](https://www.slimframework.com/) dependency manager, the `container`.
+In the file `config/container.php` are inserted the dependencies/libraries used, example [monolog](https://github.com/Seldaek/monolog).
+If you have dependencies to add to be able to use them in the controllers / middlewares, you just have to add this type of line:
+
+``` php
+<?php
+$container['library'] = function () {
+    // Call of the library, operation...
+    return $libraryObject;
+};
+```
+
+Do not hesitate to check out the documentation regarding the [slim container](https://www.slimframework.com/docs/v3/concepts/di.html) for more details.
+
 
 ## Controllers
 WIP...
