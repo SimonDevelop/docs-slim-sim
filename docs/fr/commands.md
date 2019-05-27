@@ -16,7 +16,7 @@ $ php console cache:clear
 
 ## Générer des fichiers
 
-Pour générer un controller ou middleware
+Pour générer un controller, middleware, entité ou fixture :
 ``` bash
 $ php console generate:controller TestController
 ```
