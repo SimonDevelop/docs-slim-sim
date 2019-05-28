@@ -7,7 +7,7 @@ Lors du premier lancement, `tracy` affiche uniquement les millisecondes et des i
 
 Il est à noté que l'option `Console Panel` ne fonctionne pas, et il est inutile de cocher les options `Eloquent ORM Panel` et `Idiorm Panel ` vu que nous utilisont doctrine comme orm.
 
-![tracy](https://miroir.horyzone.fr/upload/tracy.png)
+![tracy](/assets/img/tracy.png)
 
 ## Déboguer
 Pour déboguer pendant le développement de votre application, dans vos `controllers/middlewares` je vous recommande d'utiliser la fonction `r()` qui est un `var_dump` amélioré, en revanche si vous voulez déboguer directement sur twig vous avez la function `dump()` qui est activé quand vous êtes en environnement de développement `dev`.
