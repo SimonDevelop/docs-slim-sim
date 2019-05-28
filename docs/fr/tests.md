@@ -1,6 +1,6 @@
 # Tests
 
-Pour garantir la qualité du projet, SIM dispose de tests unitaires. Étant donné que la base du code peux changer au cours du temps, les tests doivent garantir qu'il n'y a pas de régression en raison de ces nouvelles modifications.
+Pour garantir la qualité du projet, le skeleton dispose de tests unitaires. Étant donné que la base du code peux changer au cours du temps, les tests doivent garantir qu'il n'y a pas de régression en raison de ces nouvelles modifications.
 
 ## PHPUnit
 Les tests permet de tester les divers routes de votre application.
