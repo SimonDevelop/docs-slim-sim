@@ -168,7 +168,7 @@ public function alert($message, $type = "success")
 ```
 Le middleware `app/src/Middlewares/OldMiddleware.php` qui est utilisé pour garder en mémoire les informations saisies dans les formulaires, utiles en cas d'echec, fonctionne de la même manière que le middleware pour les messages flash.
 
-Il envoie les informations des champs dans la vue sous forme de tableau nommé `old`, il n'y a pas de fonction pour celà, vous devez juste enregistrer sous forme de tableau vos champs dans la variable de session `$_SESSION['old']`.
+Il envoie les informations des champs dans la vue sous forme de tableau nommé `old`, il n'y a pas de fonction pour celà, vous devez juste enregistrer sous forme de tableau vos champs dans la variable de session `old`.
 
 Si vous souhaitez créer des middlewares et les exécuter pour des routes bien spécifiques, vous ne devez pas les déclarer dans `config/middlewares.php` mais directement dans `config/routes.php` comme ceci :
 ``` php
