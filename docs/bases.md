@@ -1,4 +1,4 @@
-# Les Bases
+# The basics
 
 ## Router
 Let's now attack the `router`, it's just [slim](https://www.slimframework.com/) `router`, it's in the `config/routes.php` file that are defined the routes of your application.

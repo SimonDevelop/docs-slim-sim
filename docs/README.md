@@ -112,7 +112,7 @@ You have at your disposal a `docker-compose.yml` file at the root of the project
 $ docker-compose up -d
 ```
 
-## Arborescence
+## Tree
 
 - `app/src/` folder of the application
 	- `Controllers/` folder of controllers

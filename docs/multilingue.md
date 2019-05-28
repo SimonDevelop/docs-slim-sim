@@ -1,4 +1,4 @@
-# Multilingue
+# Multilingual
 
 You can multilingual with twig, you may have noticed the `en.yml` and `fr.yml` files in `config/translations/`.
 
