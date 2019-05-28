@@ -7,7 +7,7 @@ Dans le dossier `assets`, sont disposez des dossiers dédiés au développement 
 
 Pour que vos fichiers `js`, `sass`, `scss` et `css` souhaitent être compilés, vous devez les ajouter dans la partie `entry` de votre fichier `webpack.config.js`.
 
-La configuration de webpack fait en sorte que votre code `javascript` respect les normes standard avec l'`eslint` et la compatibilité des navigateurs via `babel`, à vous d'adapter votre configuration dans les fichiers `.eslintrc` et `.babelrc`.
+La configuration de webpack fait en sorte que votre code `javascript` est compatible avec le maximum de navigateurs via `babel`, à vous d'adapter votre configuration dans les fichiers `.babelrc`.
 
 Pour pouvoir utiliser webpack, il vous faut au préalable avoir nodejs 6.11.5 au minimum d'installé puis lancer les commandes :
 ``` bash
@@ -32,7 +32,7 @@ Vous pouvez très bien supprimer webpack pour le remplacer par un autre outil ou
 
 ## RouterJS
 
-Le framework dispose d'un router pour le javascript, pour faire simple vous pouvez générer les urls des routes de slim grace à ce router dans votre code javascript (les fichiers twig uniquement).
+Le skeleton dispose d'un router pour le javascript, pour faire simple vous pouvez générer les urls des routes de slim grâce à ce router dans votre code javascript (coté twig).
 
 Un fichier javascript va-t-être généré à partir d'une route nommé `routerjs`, il vous faudra ensuite l'ajouter au début de votre code javascript pour pouvoir l'utiliser :
 ``` js
@@ -47,6 +47,5 @@ var url = Slim.Router.pathFor('leNomDeVotreRoute', {NomDeArgument: valeurDeArgum
 N'hésitez pas à aller voir l'exemple qui ce trouve dans le fichier `app/src/Views/pages/home.twig`.
 
 ::: warning Note
-Si vous souhaitez renommé le nom du router, vous pouvez le faire dans le fichier `public/index.php` au niveau de la fonction `$Init->startApp();`, ajouter les paramètres (false, "routerjs").
 Vous pouvez également le supprimer si vous en avez pas besoin avec la commande `composer remove llvdl/slim-router-js`
 :::
