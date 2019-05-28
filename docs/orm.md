@@ -26,8 +26,6 @@ You can send predefined database data with [data-fixtures](https://github.com/do
 $ php console data:fixtures
 ```
 
-Attention, cette commande purge la base de données pour ensuite envoyer toutes les fixtures de dossier `app/src/Entity/DataFixtures`, pour envoyer une fixture spécifique sans pruger la base, lancer la commande :
-
 Attention, this command purges the database to then send all the fixtures of file `app/src/Entity/DataFixtures`, to send a specific fixture without hollowing the base, to launch the command :
 
 ``` bash
