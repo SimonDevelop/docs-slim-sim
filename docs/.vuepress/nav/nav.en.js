@@ -8,7 +8,7 @@ module.exports = [
     items: [
       { text: 'Contributing', items: [
           { text: 'Contribute', link: 'https://github.com/SimonDevelop/slim-sim/blob/master/.github/CONTRIBUTING.md' },
-          { text: 'Donate', link: 'https://github.com/SimonDevelop/slim-sim#donate' }
+          { text: 'Donate', link: 'https://www.paypal.me/simonmicheneau' }
         ]
       },
       { text: 'Help', items: [
