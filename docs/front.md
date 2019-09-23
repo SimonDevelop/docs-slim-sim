@@ -2,6 +2,3 @@
 
 ## Webpack
 WIP...
-
-## RouterJS
-WIP...

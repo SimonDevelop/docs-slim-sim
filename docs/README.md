@@ -15,11 +15,8 @@ The underlying architecture is built using well-established and up-to-date techn
 - [phpdotenv](https://github.com/vlucas/phpdotenv) for the configuration of the environment.
 - [console](https://github.com/symfony/console) for terminal commands.
 - [monolog](https://github.com/Seldaek/monolog) to manage logs.
-- [runtracy](https://github.com/runcmf/runtracy) for a profiler.
-- [slim-secure-session-middleware](https://github.com/adbario/slim-secure-session-middleware) helpers for session management.
 - [translation](https://github.com/symfony/translation) for the multilingual system.
 - [webpack](https://github.com/webpack/webpack) for compilation and minification of files scss/sass/css/js.
-- [slim-router-js](https://github.com/llvdl/slim-router-js) url generator slim in javascript code.
 - [cli-menu](https://github.com/php-school/cli-menu) for execute commands from a menu in your terminal.
 
 #### NOTE
@@ -125,11 +122,9 @@ $ docker-compose up -d
     - `translations` folder of translation files used in twig views
     - `cli-config.php` cli file for doctrine commands
     - `container.php` the container of dependencies
-    - `error_pages.php` the views in case of error
     - `functions.php` functions accessible anywhere in the code
-    - `middlewares.yml` middlewares call file
-    - `routes.yml` route file
-    - `tracy.php` tracy configuration file (debugbar)
+    - `middlewares.php` middlewares call file
+    - `routes.php` route file
 - `public/` public folder of the application
 - `storage`
 	- `cache/` twig cache of the application

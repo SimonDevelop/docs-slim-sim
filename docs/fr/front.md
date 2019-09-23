@@ -29,23 +29,3 @@ $ npm run webpackdev:win
 ::: warning Note
 Vous pouvez très bien supprimer webpack pour le remplacer par un autre outil ou et gérer vos fichier css/js directement dans le dossier public.
 :::
-
-## RouterJS
-
-Le skeleton dispose d'un router pour le javascript, pour faire simple vous pouvez générer les urls des routes de slim grâce à ce router dans votre code javascript (coté twig).
-
-Un fichier javascript va-t-être généré à partir d'une route nommé `routerjs`, il vous faudra ensuite l'ajouter au début de votre code javascript pour pouvoir l'utiliser :
-``` js
-<script src="{{ path_for('routerjs') }}"></script>
-```
-
-Pour générer votre url il faudra utiliser la fonction `pathFor` dans l'objet javascript `Slim.Router` comme ceci :
-``` js
-var url = Slim.Router.pathFor('leNomDeVotreRoute', {NomDeArgument: valeurDeArgument});
-```
-
-N'hésitez pas à aller voir l'exemple qui ce trouve dans le fichier `app/src/Views/pages/home.twig`.
-
-::: warning Note
-Vous pouvez également le supprimer si vous en avez pas besoin avec la commande `composer remove llvdl/slim-router-js`
-:::

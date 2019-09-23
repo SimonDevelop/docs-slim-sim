@@ -15,11 +15,8 @@ L’architecture sous-jacente est construite à l’aide de technologies bien é
 - [phpdotenv](https://github.com/vlucas/phpdotenv) pour configurer vos environnements de développement et de production.
 - [console](https://github.com/symfony/console) pour des commandes console propre au framework.
 - [monolog](https://github.com/Seldaek/monolog) pour gérer vos logs.
-- [runtracy](https://github.com/runcmf/runtracy) la barre de débogage.
-- [slim-secure-session-middleware](https://github.com/adbario/slim-secure-session-middleware) un helper pour la gestion des sessions.
 - [translation](https://github.com/symfony/translation) le système multilingue.
 - [webpack](https://github.com/webpack/webpack) pouvoir compiler, fusion et minification de vos fichiers scss, sass, css et js.
-- [slim-router-js](https://github.com/llvdl/slim-router-js) pour générer les urls des routes directement dans vos vues twig.
 - [cli-menu](https://github.com/php-school/cli-menu) pour éxécuter les commands via un menu dans votre terminal.
 
 #### NOTE
@@ -124,11 +121,9 @@ $ docker-compose up -d
     - `translations` dossier des fichiers de traduction utilisés dans les vues twig
     - `cli-config.php` fichier cli pour les commandes doctrine
     - `container.php` le container des dépendances
-    - `error_pages.php` les vues en cas d'erreur
     - `functions.php` les fonctions accessible partout dans le code
-    - `middlewares.yml` fichier d'appel des middlewares
-    - `routes.yml` fichier des routes
-    - `tracy.php` fichier de configuration de tracy (debugbar)
+    - `middlewares.php` fichier d'appel des middlewares
+    - `routes.php` fichier des routes
 - `public/` dossier public de l'application
 - `storage`
 	- `cache/` cache twig de l'application

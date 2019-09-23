@@ -31,10 +31,10 @@ Si vous avez des dépendances à rajouter pour pouvoir les utiliser dans les con
 
 ``` php
 <?php
-$container['librairie'] = function () {
-    // Appel de la librairie, opération...
-    return $librairieObjet;
-};
+$container->set('library', function () {
+    // Call of the library, operation...
+    return $libraryObject;
+});
 ```
 
 N'hésitez pas à aller voir sur la documentation concernant le [container de slim](https://www.slimframework.com/docs/v3/concepts/di.html) pour plus de détails.
@@ -106,48 +106,53 @@ C'est dans le fichier `config/middlewares.php` que vous ajoutez à l'exécution 
 use App\Middlewares;
 
 // Middleware pour les message d'alert en session
-$app->add(new Middlewares\AlertMiddleware($container->view->getEnvironment()));
+$app->add(new Middlewares\AlertMiddleware($container));
 
-// Middleware pour la sauvegarde des champs de saisi
-$app->add(new Middlewares\OldMiddleware($container->view->getEnvironment()));
+// Middleware pour la sauvegarde des champs de saisie
+$app->add(new Middlewares\OldMiddleware($container));
 
 // Middleware pour la génération de token
-$app->add(new Middlewares\TokenMiddleware($container->view->getEnvironment()));
+$app->add(new Middlewares\TokenMiddleware($container));
 
 // Middleware pour la vérification csrf
-$app->add(new Middlewares\CsrfMiddleware($container->view->getEnvironment(), $container->csrf));
-$app->add($container->csrf);
+$app->add(new Middlewares\CsrfMiddleware($container));
+$app->add('csrf');
+
 ```
 
 Allons voir par exemple le middleware `app/src/Middlewares/AlertMiddleware.php` :
 ``` php
 <?php
+
 namespace App\Middlewares;
 
-use Slim\Http\Request;
-use Slim\Http\Response;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\MiddlewareInterface as Middleware;
+use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 
-class AlertMiddleware
+class AlertMiddleware implements Middleware
 {
-    private $twig;
     private $container;
 
-    public function __construct(\Twig_Environment $twig, $container)
+    public function __construct($container)
     {
-        $this->twig = $twig;
         $this->container = $container;
     }
 
-    public function __invoke(Request $request, Response $response, $next)
+    public function process(Request $request, RequestHandler $handler): Response
     {
-        $this->twig->addGlobal(
-            'alert',
-            $this->container->session->has('alert') ? $this->container->session->get('alert') : []
-        );
-        if ($this->container->session->has('alert')) {
-            $this->container->session->delete('alert');
+        if (isset($_SESSION['alert'])) {
+            unset($_SESSION['alert']);
         }
-        return $next($request, $response);
+        if (isset($_SESSION['alert2'])) {
+            $_SESSION['alert'] = $_SESSION['alert2'];
+            unset($_SESSION['alert2']);
+        }
+        if (isset($_SESSION['alert'])) {
+            $this->container->get("view")->getEnvironment()->addGlobal('alert', $_SESSION['alert']);
+        }
+        return $handler->handle($request);
     }
 }
 ```
@@ -158,12 +163,10 @@ Dans le controller parent `app/src/Controllers/Controller.php` vous avez la fonc
 <?php
 public function alert($message, $type = "success")
 {
-    if (!$this->session->has('alert')) {
-        $this->session->set('alert', []);
+    if (!isset($_SESSION['alert2'])) {
+        $_SESSION['alert2'] = [];
     }
-    return $this->session->add([
-        'alert' => [$type => $message]
-    ]);
+    $_SESSION['alert2'][$type] = $message;
 }
 ```
 Le middleware `app/src/Middlewares/OldMiddleware.php` qui est utilisé pour garder en mémoire les informations saisies dans les formulaires, utiles en cas d'echec, fonctionne de la même manière que le middleware pour les messages flash.
@@ -176,7 +179,7 @@ Si vous souhaitez créer des middlewares et les exécuter pour des routes bien s
 $app->group('', function () {
   $this->get('/admin', AdminController::class. ':getHome')->setName('admin');
   $this->get('/admin/users', AdminController::class. ':getUsers')->setName('users');
-})->add(new App\Middlewares\AlertMiddleware($container->view->getEnvironment(), $container));
+})->add(new App\Middlewares\AlertMiddleware($container));
 ```
 
-Pour comprendre le fonctionnement précis des middlewares de slim, je vous invite à aller voir la [documentation](https://www.slimframework.com/docs/concepts/middleware.html).
+Pour comprendre le fonctionnement précis des middlewares de slim, je vous invite à aller voir la [documentation](https://www.slimframework.com/docs/v4/concepts/middleware.html).
