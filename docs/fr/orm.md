@@ -31,3 +31,9 @@ Attention, cette commande purge la base de données pour ensuite envoyer toutes 
 ``` bash
 $ php console data:fixture <VotreFixture>
 ```
+
+## Migrations
+
+Vous pouvez générer et écrire des migrations pour la gestion des mises à jour de votre base de données. Contrairement à la commande `php vendor/bin/doctrine orm:schema-tool:update` qui execute le changement de la base en se basant uniquement des entités, les migrations permet de gérer les niveaux de mise à jour fichier par fichier pour une meilleur sécurité de vos mises à jour d'un projet.
+
+Vous avez a disposition les commandes et les exemples de migrations depuis [la documentation officiel](https://www.doctrine-project.org/projects/doctrine-migrations/en/2.1/reference/migration-classes.html#migration-classes).

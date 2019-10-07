@@ -31,3 +31,9 @@ Attention, this command purges the database to then send all the fixtures of fil
 ``` bash
 $ php console data:fixture <YourFixture>
 ```
+
+## Migrations
+
+You can generate and write migrations for managing updates to your database. Unlike the `php vendor/bin/doctrine orm:schema-tool:update` command, which executes the database change based on only the entities, the migrations can be used to manage file-by-file update levels for better security of your project updates.
+
+You have available orders and examples of migrations since [official documentation](https://www.doctrine-project.org/projects/doctrine-migrations/en/2.1/reference/migration-classes.html#migration-classes).
