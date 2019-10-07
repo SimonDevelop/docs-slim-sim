@@ -9,6 +9,7 @@ L’architecture sous-jacente est construite à l’aide de technologies bien é
 - [twig-view](https://github.com/slimphp/Twig-View) pour vos pages.
 - [doctrine](https://github.com/doctrine/doctrine2) en ORM pour votre base de données.
 - [data-fixtures](https://github.com/doctrine/data-fixtures) pour les données fictives en base de données.
+- [migrations](https://github.com/doctrine/migrations) pour les migrations des données en base.
 - [validation](https://github.com/Respect/Validation) permet d'utiliser des filtres de validation.
 - [csrf](https://github.com/slimphp/Slim-Csrf) pour la sécurité des sessions.
 - [php-ref](https://github.com/digitalnature/php-ref) une fonction var_dump amélioré.
@@ -22,16 +23,16 @@ L’architecture sous-jacente est construite à l’aide de technologies bien é
 #### NOTE
 [cli-menu](https://github.com/php-school/cli-menu) utilise l'extension php posix qui n'est pas supporter sur windows, pensez à retirer la ligne suivante dans votre compose.json si vous êtes sur windows :
 ```
-"php-school/cli-menu": "^3.0"
+"php-school/cli-menu": "^3.2"
 ```
 
 ## Prérequis
 
-- **[Php](https://secure.php.net/) >= 7.1.3**
+- **[Php](https://secure.php.net/) >= 7.1**
 > Slim Sim se base sur des dépendances demandant une version php récente.
 - **MySQL/PostgreSQL/SQLite**
 > Utilisant l'ORM [Doctrine](https://github.com/doctrine/orm), vous devez avoir à disposition une base de données.
-- **[Node.js](https://nodejs.org/) >= 6.11.5**
+- **[Node.js](https://nodejs.org/) >= 10**
 > Le framework dispose de webpack 4 pour la partie front-end et a besoin d'une version nodejs la plus récente que possible.
 - **OS supporté: Linux, MacOS et Windows**
 > Linux et MacOS sont toutefois recommandé.
@@ -93,7 +94,7 @@ server {
 
     location ~ ^/.+\.php(/|$) {
         try_files $uri /index.php = 404;
-	    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+	      fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;

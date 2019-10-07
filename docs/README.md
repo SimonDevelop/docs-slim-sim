@@ -9,6 +9,7 @@ The underlying architecture is built using well-established and up-to-date techn
 - [twig-view](https://github.com/slimphp/Twig-View) for the views.
 - [doctrine](https://github.com/doctrine/doctrine2) for the database.
 - [data-fixtures](https://github.com/doctrine/data-fixtures) for the data fixture.
+- [migrations](https://github.com/doctrine/migrations) for the migrations of the database.
 - [validation](https://github.com/Respect/Validation) to validate the data.
 - [csrf](https://github.com/slimphp/Slim-Csrf) for form security.
 - [php-ref](https://github.com/digitalnature/php-ref) for an improved var_dump function.
@@ -22,16 +23,16 @@ The underlying architecture is built using well-established and up-to-date techn
 #### NOTE
 [cli-menu](https://github.com/php-school/cli-menu) use php posix extension which is not supported on windows, remember to delete this line in composer.json if you are under windows :
 ```
-"php-school/cli-menu": "^3.0"
+"php-school/cli-menu": "^3.2"
 ```
 
 ## Prerequisites
 
-- **[Php](https://secure.php.net/) >= 7.1.3**
+- **[Php](https://secure.php.net/) >= 7.1**
 > Slim Sim relies on dependencies that require a recent php version.
 - **MySQL/PostgreSQL/SQLite**
 > Using [Doctrine](https://github.com/doctrine/orm) ORM, you must have a database available.
-- **[Node.js](https://nodejs.org/) >= 6.11.5**
+- **[Node.js](https://nodejs.org/) >= 10**
 > The framework has webpack 4 for the front-end part and needs a newer nodejs version as possible.
 - **OS supporté: Linux, MacOS et Windows**
 > Linux and MacOS are however recommended.
@@ -94,7 +95,7 @@ server {
 
     location ~ ^/.+\.php(/|$) {
         try_files $uri /index.php = 404;
-	    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+	      fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
