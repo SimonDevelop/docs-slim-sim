@@ -1,28 +1,30 @@
 {
-  "name": "docs-sim",
-  "description": "PHP SIM framework documentation written with viewpress.",
+  "name": "docs-slim-sim",
+  "description": "Main documentation of slim sim skeleton.",
   "author": {
     "name": "Simon Micheneau",
     "email": "contact@simon-micheneau.fr",
-    "url": "https://simon-micheneau.fr"
+    "url": "https://www.simon-micheneau.fr"
   },
   "license": "MIT",
-  "homepage": "https://docs-sim.horyzone.fr",
+  "homepage": "https://slim-sim.netlify.com/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Horyzone/docs-sim.git"
+    "url": "git+https://github.com/SimonDevelop/docs-slim-sim.git"
   },
   "bugs": {
-    "url": "https://github.com/Horyzone/docs-sim/issues"
+    "url": "https://github.com/SimonDevelop/docs-slim-sim/issues"
   },
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs"
   },
   "devDependencies": {
-    "@vuepress/plugin-back-to-top": "^1.0.0-beta.2",
-    "@vuepress/plugin-medium-zoom": "^1.0.0-beta.2",
-    "vuepress": "^1.0.0-beta.2"
+    "@vuepress/plugin-back-to-top": "^1.4.0",
+    "@vuepress/plugin-medium-zoom": "^1.4.0",
+    "vuepress": "^1.4.0"
   },
-  "dependencies": {}
+  "engines": {
+    "node": ">=12"
+  }
 }
