@@ -23,7 +23,7 @@ The underlying architecture is built using well-established and up-to-date techn
 #### NOTE
 [cli-menu](https://github.com/php-school/cli-menu) use php posix extension which is not supported on windows, remember to delete this line in composer.json if you are under windows :
 ```
-"php-school/cli-menu": "^3.2"
+"php-school/cli-menu": "^4.0"
 ```
 
 ## Prerequisites
