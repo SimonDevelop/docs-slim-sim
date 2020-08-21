@@ -23,7 +23,7 @@ L’architecture sous-jacente est construite à l’aide de technologies bien é
 #### NOTE
 [cli-menu](https://github.com/php-school/cli-menu) utilise l'extension php posix qui n'est pas supporter sur windows, pensez à retirer la ligne suivante dans votre compose.json si vous êtes sur windows :
 ```
-"php-school/cli-menu": "^3.2"
+"php-school/cli-menu": "^4.0"
 ```
 
 ## Prérequis
