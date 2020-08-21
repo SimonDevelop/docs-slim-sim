@@ -28,11 +28,11 @@ The underlying architecture is built using well-established and up-to-date techn
 
 ## Prerequisites
 
-- **[Php](https://secure.php.net/) >= 7.1**
+- **[Php](https://secure.php.net/) >= 7.2**
 > Slim Sim relies on dependencies that require a recent php version.
 - **MySQL/PostgreSQL/SQLite**
 > Using [Doctrine](https://github.com/doctrine/orm) ORM, you must have a database available.
-- **[Node.js](https://nodejs.org/) >= 10**
+- **[Node.js](https://nodejs.org/) >= 12**
 > The framework has webpack 4 for the front-end part and needs a newer nodejs version as possible.
 - **OS supporté: Linux, MacOS et Windows**
 > Linux and MacOS are however recommended.
